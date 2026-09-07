@@ -1,32 +1,5 @@
--- =====================================================================
--- item_distribution_by_date_range.sql
---
--- Purpose:
---   Ad hoc / on-demand query for "how many of [material] did we give
---   out between [date] and [date], and to whom / which program?" This
---   is the query most often run for one-off requests, since program
---   materials are frequently tracked independent of a specific
---   program (see the LEFT JOIN to programs) — a common reporting need
---   in program administration.
---
--- Parameters (replace the literals below):
---   :start_date   - first day of range (inclusive)
---   :end_date     - last day of range (inclusive)
---   :material_name_filter - set to a specific material name, or
---                            remove the filter line entirely to see
---                            all materials in the date range
---
--- In SQL Server this would be a stored procedure:
---   CREATE PROCEDURE dbo.usp_ItemDistributionByDateRange
---       @StartDate DATE, @EndDate DATE, @MaterialName NVARCHAR(100) = NULL
---   AS ... WHERE d.distribution_date BETWEEN @StartDate AND @EndDate
---       AND (@MaterialName IS NULL OR m.material_name = @MaterialName)
---
--- Output columns:
---   distribution_date, material_name, participant_name, organization,
---   program_name, quantity
--- =====================================================================
-
+-- Look up material distributions for a selected date range
+-- Change the dates/material below as needed
 SELECT
     d.distribution_date,
     m.material_name,
