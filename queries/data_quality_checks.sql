@@ -1,21 +1,3 @@
--- =====================================================================
--- data_quality_checks.sql
---
--- Purpose:
---   A set of validation checks to run before trusting a reporting
---   period's numbers. Surfaces inconsistent or suspicious records
---   (bad completion status/date pairs, non-positive quantities,
---   duplicate participant emails, distributions logged outside a
---   program's active date range) so they can be corrected at the
---   source instead of skewing a report.
---
--- Parameters: none. Intended to be run as-is; each SELECT below can
---   also be run individually while investigating a specific issue.
---
--- Output columns:
---   issue_type, record_id, detail
--- =====================================================================
-
 -- 1. Enrollment marked "Completed" but has no completion_date
 SELECT
     'Missing completion_date' AS issue_type,
